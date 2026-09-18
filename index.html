@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Лабораторная работа 1</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/fontawesome.min.css" rel="stylesheet">
+        <link href="css/brands.min.css" rel="stylesheet">
+        <link href="css/solid.min.css" rel="stylesheet">
+        <link href="css/v4-font-face.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">Лабораторная работа 1</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#1" class="nav-link">Лабораторная работа 1. Работа с сокетами</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">Цель</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">Средства реализации</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#1-udp" class="nav-link">1. Обмен по UDP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-tcp" class="nav-link">2. Вычисления по TCP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-html-http" class="nav-link">3. HTML-страница через HTTP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-tcp-" class="nav-link">4. Многопользовательский TCP-чат</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-getpost" class="nav-link">5. Веб-сервер GET/POST</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Демонстрация</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Вывод</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_5" class="nav-link">Источник задания</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="1">Лабораторная работа 1. Работа с сокетами</h1>
+<p>Автор: <strong>Сигаева Ксения</strong>. Группа: <strong>K3340</strong>.</p>
+<p>Номер в журнале: 26. Вариант 2 — решение квадратного уравнения.</p>
+<h2 id="_1">Цель</h2>
+<p>Изучить клиент-серверное взаимодействие через UDP и TCP, устройство HTTP
+и одновременную работу нескольких клиентов.</p>
+<h2 id="_2">Средства реализации</h2>
+<p>Использован Go и его стандартная библиотека. Пакет <code>net</code> предоставляет TCP/UDP-соединения.
+Для одновременной обработки подключений использованы горутины.
+Общие данные чата и журнала защищены мьютексами.
+HTTP-запросы разбираются и ответы формируются вручную, без HTTP-сервера из <code>net/http</code>.
+Все команды ниже запускаются из корня <code>laboratory_work_1</code>.</p>
+<h2 id="1-udp">1. Обмен по UDP</h2>
+<p>Файлы: <code>task1/server/main.go</code>, <code>task1/client/main.go</code>.
+Сервер слушает <code>127.0.0.1:8001</code>, получает датаграмму через <code>ReadFrom</code>, выводит сообщение
+и отправляет ответ через <code>WriteTo</code> по адресу отправителя.
+Клиент отправляет <code>Hello, server</code>, получает и выводит <code>Hello, client</code>.
+UDP сохраняет границы датаграмм, но не гарантирует доставку; у клиента установлен таймаут.</p>
+<h2 id="2-tcp">2. Вычисления по TCP</h2>
+<p>Файлы: <code>task2/server/main.go</code>, <code>task2/client/main.go</code>.
+Адрес: <code>127.0.0.1:8002</code>. Клиент читает a, b, c с клавиатуры и отправляет строку
+с тремя числами. Сервер решает уравнение ax² + bx + c = 0 и возвращает строку результата.
+Граница сообщения — перевод строки: TCP передаёт поток байтов, а не отдельные сообщения.</p>
+<p>Дискриминант: D = b² − 4ac. При D &gt; 0 два корня, при D = 0 один,
+при D &lt; 0 действительных корней нет. При a = 0 обрабатывается линейное уравнение.
+При некорректном вводе сервер возвращает сообщение об ошибке.</p>
+<p>Примеры для демонстрации:</p>
+<table>
+<thead>
+<tr>
+<th>Ввод</th>
+<th>Ожидаемый результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 -3 2</td>
+<td>2 и 1</td>
+</tr>
+<tr>
+<td>1 2 1</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>1 0 1</td>
+<td>Нет действительных корней</td>
+</tr>
+<tr>
+<td>0 2 -4</td>
+<td>Линейное уравнение, корень 2</td>
+</tr>
+<tr>
+<td>0 0 0</td>
+<td>Бесконечно много решений</td>
+</tr>
+<tr>
+<td>0 0 1</td>
+<td>Решений нет</td>
+</tr>
+<tr>
+<td>abc 2 3</td>
+<td>Ошибка ввода</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-html-http">3. HTML-страница через HTTP</h2>
+<p>Файлы: <code>task3/main.go</code>, <code>task3/index.html</code>.
+Сервер читает HTML-файл при запуске, принимает TCP-соединение, считывает заголовки запроса
+до пустой строки и отправляет HTTP-ответ:</p>
+<pre><code class="language-text">HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: &lt;число байтов HTML&gt;
+Connection: close
+
+&lt;содержимое index.html&gt;
+</code></pre>
+<p>В коде строки HTTP разделены <code>\r\n</code>. После ответа соединение закрывается.</p>
+<h2 id="4-tcp-">4. Многопользовательский TCP-чат</h2>
+<p>Файлы: <code>task4/server/main.go</code>, <code>task4/client/main.go</code>. Адрес: <code>127.0.0.1:8004</code>.
+Для каждого подключения сервер запускает <code>go handle(conn)</code>.
+Первой строкой клиент передаёт имя, следующими — сообщения.
+Сервер хранит соответствие соединений и имён, рассылает сообщения всем, кроме отправителя.
+Мьютекс защищает карту клиентов и доступ к очередям рассылки.
+У каждого клиента есть очередь на 64 сообщения и отдельная горутина записи с таймаутом 5 секунд.
+При переполнении очереди медленный клиент отключается, не задерживая остальных.
+При <code>exit</code> или разрыве соединения пользователь удаляется, остальные получают уведомление.</p>
+<p>Один и тот же клиент запускается в нескольких терминалах. Получение сообщений и ввод
+не блокируют друг друга благодаря горутине.</p>
+<h2 id="5-getpost">5. Веб-сервер GET/POST</h2>
+<p>Файл: <code>task5/main.go</code>. Адрес: <code>127.0.0.1:8005</code>.
+Сервер обслуживает подключения в отдельных горутинах и вручную читает метод, путь и заголовки.
+Тело POST считывается полностью по <code>Content-Length</code> через <code>io.ReadFull</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Запрос</th>
+<th>Действие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET /</td>
+<td>HTML-форма и таблица оценок</td>
+</tr>
+<tr>
+<td>POST /</td>
+<td>Добавление subject и grade, перенаправление на GET /</td>
+</tr>
+<tr>
+<td>Другой путь</td>
+<td>404</td>
+</tr>
+<tr>
+<td>Другой метод</td>
+<td>405</td>
+</tr>
+</tbody>
+</table>
+<p>Форма передаёт <code>application/x-www-form-urlencoded</code>. Для разбора полей используется <code>url.ParseQuery</code>.
+Оценки хранятся в <code>map[string][]int</code>: <code>Математика → [5, 4]</code>.
+Запись оценок защищена <code>sync.RWMutex</code>. Для построения страницы под блокировкой
+создаётся копия журнала; HTML формируется после освобождения блокировки.
+Так каждый предмет представлен одной строкой таблицы. Названия предметов экранируются перед выводом HTML.
+Выбрана шкала 2–5; оценки хранятся в оперативной памяти до перезапуска.
+Длина тела запроса задаётся заголовком <code>Content-Length</code>. После ответа соединение закрывается.</p>
+<h2 id="_3">Демонстрация</h2>
+<h3 id="1_1">Задание 1</h3>
+<p>Запуск UDP-сервера.</p>
+<p><img alt="Запуск UDP-сервера" src="image.png" />
+Получение сообщения клиента на сервере.</p>
+<p><img alt="Получение сообщения клиента на сервере" src="image-2.png" /></p>
+<p>Ответ UDP-сервера клиенту.</p>
+<p><img alt="Ответ UDP-сервера клиенту" src="image-1.png" /></p>
+<p>Повторное обращение к UDP-серверу.</p>
+<p><img alt="Повторное обращение к UDP-серверу" src="image-3.png" /></p>
+<h3 id="2">Задание 2</h3>
+<p>Запуск сервера решения уравнений.</p>
+<p><img alt="Запуск сервера решения уравнений" src="image-4.png" /></p>
+<p>Два корня уравнения x² − 3x + 2 = 0.</p>
+<p><img alt="Два корня уравнения x² − 3x + 2 = 0" src="image-5.png" /></p>
+<p>Решение линейного уравнения 3x + 4 = 0.</p>
+<p><img alt="Решение линейного уравнения 3x + 4 = 0" src="image-6.png" /></p>
+<p>Сообщение при вводе двух коэффициентов вместо трёх.</p>
+<p><img alt="Сообщение при вводе двух коэффициентов вместо трёх" src="image-7.png" /></p>
+<h3 id="3">Задание 3</h3>
+<p>Запуск HTTP-сервера.</p>
+<p><img alt="Запуск HTTP-сервера" src="image-8.png" /></p>
+<p>Страница из файла index.html в браузере.</p>
+<p><img alt="Страница из файла index.html в браузере" src="image-9.png" /></p>
+<h3 id="4">Задание 4</h3>
+<p>Запуск сервера чата.</p>
+<p><img alt="Запуск сервера чата" src="image-10.png" /></p>
+<p>Переписка в терминале ennie.</p>
+<p><img alt="Переписка в терминале ennie" src="image-11.png" /></p>
+<p>Переписка и выход пользователя bob.</p>
+<p><img alt="Переписка и выход пользователя bob" src="image-12.png" /></p>
+<p>Переписка и выход пользователя gosha.</p>
+<p><img alt="Переписка и выход пользователя gosha" src="image-13.png" /></p>
+<p>Подключение и отключение трёх участников на сервере.</p>
+<p><img alt="Подключение и отключение трёх участников на сервере" src="image-14.png" /></p>
+<h3 id="5">Задание 5</h3>
+<p>Запуск сервера журнала оценок.</p>
+<p><img alt="Запуск сервера журнала оценок" src="image-15.png" /></p>
+<p>Журнал с оценками, сгруппированными по дисциплинам.</p>
+<p><img alt="Журнал с оценками, сгруппированными по дисциплинам" src="image-16.png" /></p>
+<h2 id="_4">Вывод</h2>
+<p>В ходе работы я изучила обмен данными через сокеты TCP и UDP на Go.
+Для HTTP-серверов разобрала структуру запросов и вручную сформировала ответы.
+В чате отделила отправку сообщений каждому клиенту, а в журнале защитила общие
+данные от одновременного изменения несколькими обработчиками.</p>
+<h2 id="_5">Источник задания</h2>
+<p><a href="https://rendex85.github.io/ITMO_ICT_WebDevelopment_Docs/lab1/assignment/">Методичка ЛР1</a>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js"></script>
+        <script src="search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2026-09-18 10:44:42.394466+00:00
+-->
