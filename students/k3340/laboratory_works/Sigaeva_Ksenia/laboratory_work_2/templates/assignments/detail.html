@@ -1,0 +1,101 @@
+{{define "content"}}
+    <a class="back" href="/assignments">← Все задания</a>
+    <div class="pagehead">
+        <div>
+            <span class="tag">{{.Assignment.Subject}}</span>
+            <h1>{{.Assignment.Title}}</h1>
+            <p class="muted">{{.Assignment.Teacher}} · Выдано {{.Assignment.Issued}}</p>
+        </div>
+        {{if .User.Teacher}}
+            <a class="button" href="/teacher/assignments/{{.Assignment.ID}}/edit">Редактировать</a>
+        {{end}}
+    </div>
+    <div class="detailgrid">
+        <section class="panel">
+            <h2>Что нужно сделать</h2>
+            <div class="prose">{{.Assignment.Body}}</div>
+        </section>
+        <aside class="panel deadline">
+            <p class="eyebrow">СРОК СДАЧИ</p>
+            <h2>{{.Assignment.Due}}</h2>
+            <p class="muted">Включительно, до конца дня</p>
+            {{if .Assignment.Late}}
+                <p class="late">Срок прошёл. Ответ можно отправить с отметкой об опоздании.</p>
+            {{end}}
+            <hr>
+            <h3>Условия и штрафы</h3>
+            <p>{{if .Assignment.Penalties}}{{.Assignment.Penalties}}{{else}}Штрафы не предусмотрены.{{end}}</p>
+        </aside>
+    </div>
+    {{if .User.Teacher}}
+        <section class="section">
+            <h2>
+                Ответы учеников
+                <span class="count">{{len .Submissions}}</span>
+            </h2>
+            {{range .Submissions}}
+                <article class="panel submission">
+                    <div class="submissionhead">
+                        <h3>{{.Student}}</h3>
+                        <span class="muted">
+                            {{.Submitted}}
+                            {{if .Late}}
+                                ·
+                                <span class="late">С опозданием</span>
+                            {{end}}
+                        </span>
+                    </div>
+                    <div class="prose answer">{{.Answer}}</div>
+                    <form class="gradeform" method="post" action="/teacher/submissions/{{.ID}}/grade">
+                        <input type="hidden" name="csrf" value="{{$.CSRF}}">
+                        <label>
+                            Оценка
+                            <select name="grade" required>
+                                <option value="">Выберите</option>
+                                <option {{if eq .Grade "2" }} selected{{end}}>2</option>
+                                <option {{if eq .Grade "3" }} selected{{end}}>3</option>
+                                <option {{if eq .Grade "4" }} selected{{end}}>4</option>
+                                <option {{if eq .Grade "5" }} selected{{end}}>5</option>
+                            </select>
+                        </label>
+                        <label class="grow">
+                            Комментарий
+                            <input name="feedback" value="{{.Feedback}}" maxlength="2000" placeholder="Обратная связь по решению">
+                        </label>
+                        <button class="primary">Сохранить оценку</button>
+                    </form>
+                </article>
+            {{else}}
+                <div class="panel empty">Пока никто не отправил ответ.</div>
+            {{end}}
+        </section>
+    {{else}}
+        <section class="panel section">
+            <div class="submissionhead">
+                <h2>Ваш ответ</h2>
+                {{if .Submission.ID}}
+                    <span class="tag">{{.Submission.Grade}}</span>
+                {{end}}
+            </div>
+            {{if and .Submission.ID (ne .Submission.Grade "На проверке")}}
+                <div class="prose answer">{{.Submission.Answer}}</div>
+                <h3>Комментарий учителя</h3>
+                <p>{{if .Submission.Feedback}}{{.Submission.Feedback}}{{else}}Без комментария.{{end}}</p>
+                <p class="muted">Оценённый ответ нельзя изменить.</p>
+            {{else}}
+                <p class="muted">До проверки учителем можно сохранить исправленный ответ.</p>
+                <form method="post" action="/assignments/{{.Assignment.ID}}/submit">
+                    <input type="hidden" name="csrf" value="{{.CSRF}}">
+                    <label>
+                        Текст решения
+                        <textarea name="answer" rows="8" maxlength="10000" required placeholder="Опишите ход решения…">{{.Submission.Answer}}</textarea>
+                    </label>
+                    <button class="primary">{{if .Submission.ID}}Обновить ответ{{else}}Отправить ответ{{end}}</button>
+                </form>
+            {{end}}
+            {{if .Submission.ID}}
+                <p class="muted">Отправлено {{.Submission.Submitted}}{{if .Submission.Late}} · С опозданием{{end}}</p>
+            {{end}}
+        </section>
+    {{end}}
+{{end}}

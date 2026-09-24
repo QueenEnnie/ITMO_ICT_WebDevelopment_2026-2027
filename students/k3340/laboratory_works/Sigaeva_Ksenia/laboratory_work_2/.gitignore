@@ -1,0 +1,5 @@
+.env
+*.exe
+site/
+.venv/
+__pycache__/

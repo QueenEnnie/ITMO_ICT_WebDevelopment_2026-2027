@@ -1,0 +1,697 @@
+:root {
+    --ink: #20342e;
+    --muted: #68766f;
+    --green: #226347;
+    --line: #dde4dd;
+    --paper: #f5f6f0;
+    --soft: #eaf1e6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+a {
+    color: var(--green);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button,input,textarea,select {
+    font: inherit;
+}
+
+button,.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: white;
+    color: var(--ink);
+    cursor: pointer;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.button:hover,button:hover {
+    filter: brightness(.96);
+    text-decoration: none;
+}
+
+.primary {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+}
+
+.quiet {
+    background: transparent;
+    font-weight: 400;
+}
+
+.danger {
+    background: #943c35;
+    color: white;
+}
+
+.top {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+}
+
+.navwrap {
+    max-width: 1200px;
+    margin: auto;
+    min-height: 88px;
+    display: flex;
+    align-items: center;
+    gap: 42px;
+    padding: 16px 24px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+    font-weight: 750;
+    color: var(--ink);
+    white-space: nowrap;
+}
+
+.brandmark {
+    display: grid;
+    place-items: center;
+    background: var(--green);
+    color: white;
+    border-radius: 10px;
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+}
+
+.top nav {
+    display: flex;
+    gap: 25px;
+}
+
+.top nav a {
+    color: var(--ink);
+}
+
+.account {
+    margin-left: auto;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    font-size: 14px;
+}
+
+.account small {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.account form {
+    margin: 0;
+}
+
+main {
+    max-width: 1200px;
+    min-height: calc(100vh - 176px);
+    margin: auto;
+    padding: 44px 24px 64px;
+}
+
+h1,h2,h3 {
+    line-height: 1.25;
+    margin: 0 0 16px;
+}
+
+h1 {
+    font-size: 38px;
+    letter-spacing: -1.2px;
+}
+
+h2 {
+    font-size: 23px;
+    letter-spacing: -.4px;
+}
+
+h3 {
+    font-size: 17px;
+}
+
+p {
+    margin: 0 0 18px;
+}
+
+.eyebrow {
+    font-size: 11px;
+    font-weight: 750;
+    letter-spacing: 1.8px;
+    color: var(--green);
+    margin-bottom: 12px;
+}
+
+.muted,small {
+    color: var(--muted);
+}
+
+.pagehead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.pagehead p:last-child {
+    margin-bottom: 0;
+}
+
+.count {
+    font-size: 16px;
+    font-weight: 500;
+    vertical-align: middle;
+    background: #e4eadd;
+    padding: 4px 11px;
+    border-radius: 20px;
+    margin-left: 14px;
+    letter-spacing: 0;
+}
+
+.panel {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    padding: 26px;
+}
+
+.filters {
+    display: flex;
+    align-items: end;
+    gap: 16px;
+    margin-bottom: 25px;
+    padding: 20px;
+}
+
+.filters label {
+    margin: 0;
+}
+
+.filters .reset {
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
+.grow {
+    flex: 1;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+label small {
+    display: block;
+    font-weight: 400;
+    margin-top: 6px;
+}
+
+input,select,textarea {
+    display: block;
+    width: 100%;
+    margin-top: 7px;
+    border: 1px solid #cbd5cc;
+    background: #fff;
+    border-radius: 7px;
+    padding: 10px 12px;
+    color: var(--ink);
+    font-weight: 400;
+}
+
+input:focus,select:focus,textarea:focus {
+    outline: 2px solid #95bca3;
+    outline-offset: 2px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.filters select {
+    min-width: 200px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    padding: 24px;
+    transition: border-color .15s;
+}
+
+.card:hover {
+    border-color: #94b39e;
+}
+
+.cardtop {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 21px;
+}
+
+.tag {
+    display: inline-block;
+    background: var(--soft);
+    color: #41624a;
+    font-size: 12px;
+    font-weight: 650;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.card h2 {
+    font-size: 22px;
+}
+
+.card h2 a {
+    color: var(--ink);
+}
+
+.excerpt {
+    color: var(--muted);
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.cardbottom {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+}
+
+.cardbottom small {
+    display: block;
+    font-size: 11px;
+}
+
+.cardbottom strong {
+    font-size: 14px;
+}
+
+.arrow {
+    font-size: 24px;
+    padding: 2px 13px;
+    background: var(--paper);
+    border-radius: 8px;
+}
+
+.teacher {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 12px 0 0;
+}
+
+.pagination {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.empty {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 42px;
+}
+
+.back {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.detailgrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.prose {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.deadline {
+    background: #eef2e8;
+}
+
+.deadline h2 {
+    font-size: 27px;
+}
+
+.deadline p {
+    font-size: 14px;
+}
+
+.late {
+    color: #995b25;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 22px 0;
+}
+
+.section {
+    margin-top: 30px;
+}
+
+.submission {
+    margin-top: 16px;
+}
+
+.submissionhead {
+    display: flex;
+    gap: 18px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.submissionhead h2,.submissionhead h3 {
+    margin: 0;
+}
+
+.submissionhead span {
+    font-size: 13px;
+}
+
+.answer {
+    background: var(--paper);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.gradeform {
+    display: flex;
+    gap: 16px;
+    align-items: end;
+}
+
+.gradeform label {
+    margin: 0;
+}
+
+.gradeform select {
+    min-width: 120px;
+}
+
+.editor {
+    max-width: 800px;
+}
+
+.twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.check input {
+    width: auto;
+    margin: 0;
+}
+
+.tablewrap {
+    overflow: auto;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+}
+
+th,td {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    min-width: 150px;
+}
+
+thead th {
+    background: #eaf0e5;
+    font-weight: 600;
+}
+
+th small {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+tbody th {
+    white-space: nowrap;
+}
+
+tbody td {
+    text-align: center;
+}
+
+tbody tr:last-child>* {
+    border-bottom: 0;
+}
+
+.subjectlist {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.subjectlist li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+
+
+
+
+.auth {
+    padding: 36px;
+}
+
+.auth h1 {
+    font-size: 29px;
+}
+
+.auth h2 {
+    font-size: 29px;
+}
+
+.wide {
+    width: 100%;
+}
+
+.authlink {
+    font-size: 14px;
+    text-align: center;
+    margin: 24px 0 0;
+}
+
+.solo {
+    max-width: 490px;
+    margin: 0 auto;
+}
+
+.alert {
+    background: #fff0ea;
+    color: #873e2f;
+    border: 1px solid #e4b6a4;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 24px;
+}
+
+footer {
+    max-width: 1152px;
+    margin: auto;
+    border-top: 1px solid var(--line);
+    padding: 20px 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+footer span {
+    margin-left: 20px;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+details p {
+    margin-top: 18px;
+}
+
+@media(max-width:950px) {
+
+    .navwrap {
+        gap: 24px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+
+
+
+    .detailgrid {
+        grid-template-columns: 1.5fr 1fr;
+    }
+
+    .gradeform {
+        flex-wrap: wrap;
+    }
+
+}
+
+@media(max-width:650px) {
+    main {
+        padding: 28px 16px;
+    }
+
+    .navwrap {
+        flex-wrap: wrap;
+        padding: 14px 16px;
+        gap: 16px;
+    }
+
+    .top nav {
+        gap: 18px;
+    }
+
+    .account {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .cards,.detailgrid,.twocol {
+        grid-template-columns: 1fr;
+    }
+
+    .pagehead {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .filters {
+        flex-wrap: wrap;
+    }
+
+    .filters label {
+        width: 100%;
+    }
+
+
+    .auth {
+        padding: 24px;
+    }
+
+    .panel {
+        padding: 20px;
+    }
+
+    .tablewrap {
+        padding: 0;
+    }
+
+    .submissionhead {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .gradeform {
+        display: block;
+    }
+
+    .gradeform label {
+        margin-bottom: 16px;
+    }
+
+    .gradeform button {
+        width: 100%;
+    }
+
+    footer {
+        margin: 0 16px;
+    }
+
+    .pagination {
+        gap: 14px;
+    }
+
+}
+
+.auth-heading {
+    text-align: center;
+}
+
+.gradebook thead th:not(:first-child) {
+    text-align: center;
+}

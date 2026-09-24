@@ -1,0 +1,31 @@
+{{define "content"}}
+    <div class="pagehead">
+        <div>
+            <p class="eyebrow">КАБИНЕТ УЧИТЕЛЯ</p>
+            <h1>Предметы</h1>
+        </div>
+    </div>
+    <div class="detailgrid">
+        <section class="panel">
+            <h2>Все дисциплины</h2>
+            <ul class="subjectlist">
+                {{range .Subjects}}
+                    <li>{{.Name}}</li>
+                {{else}}
+                    <li>Пока нет предметов.</li>
+                {{end}}
+            </ul>
+        </section>
+        <section class="panel">
+            <h2>Новый предмет</h2>
+            <form method="post" action="/teacher/subjects">
+                <input type="hidden" name="csrf" value="{{.CSRF}}">
+                <label>
+                    Название
+                    <input name="name" maxlength="100" required placeholder="Например, история">
+                </label>
+                <button class="primary">Добавить предмет</button>
+            </form>
+        </section>
+    </div>
+{{end}}

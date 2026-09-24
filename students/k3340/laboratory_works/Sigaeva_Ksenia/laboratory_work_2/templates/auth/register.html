@@ -1,0 +1,41 @@
+{{define "content"}}
+    <section class="panel auth solo">
+        <p class="eyebrow auth-heading">ПРИСОЕДИНЯЙТЕСЬ</p>
+        <h1 class="auth-heading">Ваш учебный аккаунт</h1>
+        <p class="muted">Для регистрации учителя потребуется специальный ключ. После создания аккаунта войдите с выбранным логином.</p>
+        <form method="post" action="/register">
+            <input type="hidden" name="csrf" value="{{.CSRF}}">
+            <label>
+                Имя и фамилия
+                <input name="name" value="{{index .Form "name"}}" maxlength="100" autocomplete="name" required>
+            </label>
+            <label>
+                Логин
+                <input name="username" value="{{index .Form "username"}}" pattern="[A-Za-z0-9_]{3,40}" maxlength="40" autocomplete="username" required>
+                <small>От 3 до 40 латинских букв, цифр или _.</small>
+            </label>
+            <label>
+                Пароль
+                <input name="password" type="password" minlength="8" maxlength="72" autocomplete="new-password" required>
+                <small>Минимум 8 символов.</small>
+            </label>
+            <label>
+                Роль
+                <select name="role" required>
+                    <option value="student" {{if eq (index .Form "role") "student"}}selected{{end}}>Ученик</option>
+                    <option value="teacher" {{if eq (index .Form "role") "teacher"}}selected{{end}}>Учитель</option>
+                </select>
+            </label>
+            <label>
+                Ключ учителя
+                <input name="teacher_key" type="password" autocomplete="off" aria-describedby="teacher-key-help">
+                <small id="teacher-key-help">Обязателен только для учителя. Ученики оставляют поле пустым.</small>
+            </label>
+            <button class="primary wide">Создать аккаунт</button>
+        </form>
+        <p class="authlink">
+            Уже есть аккаунт?
+            <a href="/login">Войти</a>
+        </p>
+    </section>
+{{end}}

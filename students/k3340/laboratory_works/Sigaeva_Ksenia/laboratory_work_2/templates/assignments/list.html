@@ -1,0 +1,72 @@
+{{define "content"}}
+    <div class="pagehead">
+        <div>
+            <h1>
+                Домашние задания
+                <span class="count">{{.Total}}</span>
+            </h1>
+            <p class="muted">Выберите задание, посмотрите сроки и отправьте решение.</p>
+        </div>
+        {{if .User.Teacher}}
+            <a class="button primary" href="/teacher/assignments/new">+ Новое задание</a>
+        {{end}}
+    </div>
+    <form class="filters panel" method="get" action="/assignments">
+        <label class="grow">
+            Поиск
+            <input name="q" value="{{.Query}}" placeholder="Название или текст задания">
+        </label>
+        <label>
+            Предмет
+            <select name="subject">
+                <option value="">Все предметы</option>
+                {{range .Subjects}}
+                    <option value="{{.ID}}" {{if eq (printf "%d" .ID) $.SubjectFilter}}selected{{end}}>{{.Name}}</option>
+                {{end}}
+            </select>
+        </label>
+        <button class="primary">Найти</button>
+        <a class="reset" href="/assignments">Сбросить</a>
+    </form>
+    <div class="cards">
+        {{range .Assignments}}
+            <article class="card">
+                <div class="cardtop">
+                    <span class="tag">{{.Subject}}</span>
+                    {{if .Late}}
+                        <span class="late">Срок прошёл</span>
+                    {{end}}
+                </div>
+                <h2>
+                    <a href="/assignments/{{.ID}}">{{.Title}}</a>
+                </h2>
+                <p class="excerpt">{{.Body}}</p>
+                <div class="cardbottom">
+                    <div>
+                        <small>Сдать до</small>
+                        <strong>{{.Due}}</strong>
+                    </div>
+                    <a class="arrow" href="/assignments/{{.ID}}" aria-label="Открыть: {{.Title}}">↗</a>
+                </div>
+                <p class="teacher">{{.Teacher}}</p>
+            </article>
+        {{else}}
+            <div class="panel empty">
+                <h2>Заданий не найдено</h2>
+                <p>Попробуйте другой запрос или выберите все предметы.</p>
+                {{if .User.Teacher}}
+                    <a href="/teacher/assignments/new">Создать задание</a>
+                {{end}}
+            </div>
+        {{end}}
+    </div>
+    <nav class="pagination" aria-label="Страницы заданий">
+        {{if .Prev}}
+            <a class="button" href="{{.Prev}}">← Назад</a>
+        {{end}}
+        <span>Страница {{.PageNum}} из {{.Pages}}</span>
+        {{if .Next}}
+            <a class="button" href="{{.Next}}">Далее →</a>
+        {{end}}
+    </nav>
+{{end}}

@@ -1,0 +1,66 @@
+{{define "content"}}
+    <script src="/static/assignment-dates.js" defer></script>
+    <a class="back" href="/assignments">← Все задания</a>
+    <div class="pagehead">
+        <div>
+            <p class="eyebrow">КАБИНЕТ УЧИТЕЛЯ</p>
+            <h1>{{.Title}}</h1>
+        </div>
+    </div>
+    <section class="panel editor">
+        <form method="post">
+            <input type="hidden" name="csrf" value="{{.CSRF}}">
+            <label>
+                Название
+                <input name="title" value="{{index .Form "title"}}" maxlength="150" required>
+            </label>
+            <label>
+                Предмет
+                <select name="subject" required>
+                    <option value="">Выберите предмет</option>
+                    {{range .Subjects}}
+                        <option value="{{.ID}}" {{if eq (printf "%d" .ID) (index $.Form "subject")}}selected{{end}}>{{.Name}}</option>
+                    {{end}}
+                </select>
+                <small>
+                    Нет нужного предмета?
+                    <a href="/teacher/subjects">Добавьте его.</a>
+                </small>
+            </label>
+            <div class="twocol">
+                <label>
+                    Дата выдачи
+                    <input type="date" name="issued" value="{{index .Form "issued"}}" required>
+                </label>
+                <label>
+                    Сдать до
+                    <input type="date" name="due" value="{{index .Form "due"}}" min="{{index .Form "issued"}}" required>
+                    <small>Не раньше даты выдачи задания.</small>
+                </label>
+            </div>
+            <label>
+                Текст задания
+                <textarea name="body" rows="7" maxlength="10000" required>{{index .Form "body"}}</textarea>
+            </label>
+            <label>
+                Условия и штрафы
+                <textarea name="penalties" rows="3" maxlength="2000">{{index .Form "penalties"}}</textarea>
+            </label>
+            <button class="primary">Сохранить задание</button>
+        </form>
+    </section>
+    {{if .Assignment.ID}}
+        <details class="panel editor section">
+            <summary>Удалить задание</summary>
+            <p>Удалятся также ответы и оценки по этому заданию.</p>
+            <form method="post" action="/teacher/assignments/{{.Assignment.ID}}/delete">
+                <input type="hidden" name="csrf" value="{{.CSRF}}">
+                <label class="check">
+                    <input type="checkbox" name="confirm" value="yes" required>
+                    Подтверждаю удаление задания и приложенных ответов
+                </label>
+                <button class="danger">Удалить</button>
+            </form>
+        </details>
+    {{end}}
+{{end}}

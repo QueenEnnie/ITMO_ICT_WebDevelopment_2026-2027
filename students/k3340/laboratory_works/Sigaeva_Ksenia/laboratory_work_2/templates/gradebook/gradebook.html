@@ -1,0 +1,37 @@
+{{define "content"}}
+    <div class="pagehead">
+        <div>
+            <p class="eyebrow">РЕЗУЛЬТАТЫ КЛАССА</p>
+            <h1>Журнал оценок</h1>
+        </div>
+    </div>
+    <div class="panel tablewrap">
+        <table class="gradebook">
+            <thead>
+                <tr>
+                    <th>Ученик</th>
+                    {{range .Assignments}}
+                        <th>
+                            <small>{{.Subject}}</small>
+                            <a href="/assignments/{{.ID}}">{{.Title}}</a>
+                        </th>
+                    {{end}}
+                </tr>
+            </thead>
+            <tbody>
+                {{range .Rows}}
+                    <tr>
+                        <th>{{.Name}}</th>
+                        {{range .Cells}}
+                            <td>{{.}}</td>
+                        {{end}}
+                    </tr>
+                {{else}}
+                    <tr>
+                        <td colspan="99" class="empty">Ученики появятся здесь после регистрации.</td>
+                    </tr>
+                {{end}}
+            </tbody>
+        </table>
+    </div>
+{{end}}

@@ -1,0 +1,53 @@
+{{define "base"}}
+    <!doctype html>
+    <html lang="ru">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1">
+            <title>{{.Title}} · Класс</title>
+            <link rel="stylesheet" href="/static/style.css">
+        </head>
+        <body>
+            <header class="top">
+                <div class="navwrap">
+                    <div class="brand">
+                        <span class="brandmark">К</span>
+                        Класс
+                    </div>
+                    {{if .User}}
+                        <nav aria-label="Основная навигация">
+                            <a href="/assignments">Задания</a>
+                            <a href="/gradebook">Журнал</a>
+                            {{if .User.Teacher}}
+                                <a href="/teacher/subjects">Предметы</a>
+                            {{end}}
+                        </nav>
+                        <div class="account">
+                            <span>
+                                {{.User.Name}}
+                                <small>{{if .User.Teacher}}Учитель{{else}}Ученик{{end}}</small>
+                            </span>
+                            <form method="post" action="/logout">
+                                <input type="hidden" name="csrf" value="{{.CSRF}}">
+                                <button class="quiet">Выйти</button>
+                            </form>
+                        </div>
+                    {{else}}
+                        <nav>
+                            <a href="/login">Войти</a>
+                            <a href="/register">Регистрация</a>
+                        </nav>
+                    {{end}}
+                </div>
+            </header>
+            <main>
+                {{if .Error}}
+                    <div class="alert" role="alert">{{.Error}}</div>
+                {{end}}
+                {{template "content" .}}
+            </main>
+            <footer>
+            </footer>
+        </body>
+    </html>
+{{end}}
