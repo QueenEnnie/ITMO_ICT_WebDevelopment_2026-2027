@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru" data-bs-theme="light">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Отчёт Сигаевой Ксении, K3340 — веб-программирование, вариант 2.">
-        <meta name="author" content="Сигаева Ксения">
-        <link rel="canonical" href="https://queenennie.github.io/ITMO_ICT_WebDevelopment_2026-2027/lab2/">
+        <meta name="description" content="None">
+        
+        
         <link rel="shortcut icon" href="img/favicon.ico">
-        <title>ЛР2 · Доска домашних заданий</title>
+        <title>ЛР2 — Доска домашних заданий</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/fontawesome.min.css" rel="stylesheet">
         <link href="css/brands.min.css" rel="stylesheet">
@@ -17,7 +17,6 @@
         <link href="css/base.css" rel="stylesheet">
         <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
         <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <link href="stylesheets/report.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -25,32 +24,10 @@
     <body class="homepage">
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href=".">ЛР2 · Доска домашних заданий</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <a class="navbar-brand" href=".">ЛР2 — Доска домашних заданий</a>
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a href="." class="nav-link active" aria-current="page">Обзор</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="architecture/" class="nav-link">Архитектура и данные</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="interfaces/" class="nav-link">Интерфейсы</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="verification/" class="nav-link">Запуск и проверка</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://queenennie.github.io/ITMO_ICT_WebDevelopment_2026-2027/" class="nav-link">ЛР1</a>
-                            </li>
-                        </ul>
 
                     <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
@@ -58,50 +35,10 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="architecture/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                              <button id="theme-menu" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme" class="nav-link dropdown-toggle">
-                                <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
-                                <span class="d-lg-none ms-2">Toggle theme</span>
-                              </button>
-                              <ul class="dropdown-menu dropdown-menu-end">
-                                <li>
-                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="true">
-                                    <i class="fa-solid fa-sun fa-fw"></i>
-                                    <span class="ms-2">Light</span>
-                                    <i class="fa-solid fa-check ms-auto"></i>
-                                  </button>
-                                </li>
-                                <li>
-                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-                                    <i class="fa-solid fa-moon fa-fw"></i>
-                                    <span class="ms-2">Dark</span>
-                                    <i class="fa-solid fa-check ms-auto d-none"></i>
-                                  </button>
-                                </li>
-                                <li>
-                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
-                                    <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
-                                    <span class="ms-2">Auto</span>
-                                    <i class="fa-solid fa-check ms-auto d-none"></i>
-                                  </button>
-                                </li>
-                              </ul>
-                            </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <script src="js/darkmode.js"></script>
 
         <div class="container">
             <div class="row">
@@ -126,19 +63,27 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Индивидуальный вариант</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Архитектура</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Содержание отчёта</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Данные</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_5" class="nav-link">Результат</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_5" class="nav-link">Интерфейсы</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_6" class="nav-link">Источник задания</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_6" class="nav-link">Работа с интерфейсами</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_13" class="nav-link">Сценарии проверки</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_14" class="nav-link">Источник задания</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -149,24 +94,171 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="no-2">Лабораторная работа № 2<a class="headerlink" href="#no-2" title="Permanent link">&para;</a></h1>
+<h1 id="no-2">Лабораторная работа № 2</h1>
 <p><strong>Сигаева Ксения, K3340. Номер в журнале: 26. Вариант 2 — доска домашних заданий.</strong></p>
-<h2 id="_1">Технологии<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_1">Технологии</h2>
 <p>Используются PostgreSQL, серверные шаблоны <code>html/template</code> и собственные CSS-стили.</p>
-<h2 id="_2">Цель<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">Цель</h2>
 <p>Реализовать веб-приложение, в котором учитель публикует задания и оценивает ответы, а ученик просматривает задания, сдаёт текстовые решения и видит журнал оценок.</p>
-<h2 id="_3">Индивидуальный вариант<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p><strong>Вариант 2 — доска домашних заданий.</strong> Сайт предназначен для одного класса: учителя публикуют задания, ученики отправляют текстовые решения, а результаты доступны в общем журнале.</p>
-<p>Для каждого задания хранятся предмет, преподаватель, дата выдачи, срок выполнения, текст и условия штрафов. Учитель создаёт, редактирует и удаляет задания, проверяет ответы и выставляет оценки от 2 до 5. Ученику доступны просмотр заданий, сдача решения и просмотр оценок.</p>
-<h2 id="_4">Содержание отчёта<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="architecture/">Архитектура и данные</a> — устройство приложения, таблицы и настройка подключения.</li>
-<li><a href="interfaces/">Интерфейсы</a> — страницы ученика и учителя, формы и ограничения доступа.</li>
-<li><a href="verification/">Запуск и проверка</a> — порядок запуска и сценарии проверки.</li>
-</ul>
-<h2 id="_5">Результат<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>Реализована доска домашних заданий на Go с PostgreSQL, серверными HTML-шаблонами и CSS-оформлением. Список заданий поддерживает поиск, фильтрацию по предмету и пагинацию. Права ученика и учителя проверяются в интерфейсе и на сервере.</p>
-<h2 id="_6">Источник задания<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_3">Архитектура</h2>
+<p>Браузер отправляет HTTP-запрос обработчику Go. Обработчик проверяет сессию и роль, читает или изменяет PostgreSQL, передаёт данные в <code>html/template</code> и возвращает HTML. После успешной отправки формы сервер перенаправляет браузер на страницу результата.</p>
+<p>Модель представлена структурами и пакетом <code>internal/db</code>: все SQL-запросы и чтение результатов находятся там. Контроллеры в <code>internal/handlers</code> получают и проверяют данные HTTP-запросов, вызывают функции работы с базой и выбирают ответ. Представления — HTML-шаблоны. Это разделение обязанностей соответствует идее MVC.</p>
+<p>Точка входа — <code>cmd/app/main.go</code>. Пакеты <code>internal/auth</code>, <code>internal/db</code>, <code>internal/handlers</code> и <code>internal/models</code> отвечают за авторизацию, базу, HTTP и структуры данных соответственно. Шаблоны разделены на <code>auth/</code>, <code>assignments/</code>, <code>gradebook/</code> и <code>subjects/</code>; <code>base.html</code> остаётся общим. <code>assets.go</code> в корне встраивает ресурсы в исполняемый файл. Запуск из корня проекта: <code>go run ./cmd/app</code>.</p>
+<p>Подключение к PostgreSQL задаётся переменной окружения <code>DATABASE_URL</code>; ключ регистрации учителя при необходимости меняется в <code>internal/auth/teacher_key.go</code>. После изменения ключа приложение нужно перезапустить.</p>
+<h2 id="_4">Данные</h2>
+<table>
+<thead>
+<tr>
+<th>Таблица</th>
+<th>Содержимое и связи</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>users</td>
+<td>Логин, имя, хеш пароля, роль ученика или учителя</td>
+</tr>
+<tr>
+<td>subjects</td>
+<td>Названия предметов</td>
+</tr>
+<tr>
+<td>assignments</td>
+<td>Предмет, автор-учитель, название, текст, даты выдачи и сдачи, штрафы</td>
+</tr>
+<tr>
+<td>submissions</td>
+<td>Задание, ученик, ответ, время отправки, оценка и комментарий</td>
+</tr>
+<tr>
+<td>sessions</td>
+<td>Хеш токена сессии, пользователь и срок действия</td>
+</tr>
+</tbody>
+</table>
+<p>У задания один предмет и один автор. У ученика может быть только один ответ на каждое задание; его можно изменять до оценки. При удалении задания его ответы удаляются вместе с ним. Просрочка определяется по календарной дате по московскому времени, штраф учитывает учитель вручную.</p>
+<h2 id="_5">Интерфейсы</h2>
+<table>
+<thead>
+<tr>
+<th>Адрес</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/register</code></td>
+<td>Регистрация ученика; регистрация учителя по ключу</td>
+</tr>
+<tr>
+<td><code>/login</code></td>
+<td>Вход</td>
+</tr>
+<tr>
+<td><code>/assignments</code></td>
+<td>Поиск, фильтрация, пагинация заданий</td>
+</tr>
+<tr>
+<td><code>/assignments/{id}</code></td>
+<td>Условие, сроки, штрафы; ответ ученика или проверка ответов учителем</td>
+</tr>
+<tr>
+<td><code>/teacher/assignments/new</code></td>
+<td>Создание задания</td>
+</tr>
+<tr>
+<td><code>/teacher/assignments/{id}/edit</code></td>
+<td>Редактирование и удаление задания</td>
+</tr>
+<tr>
+<td><code>/teacher/subjects</code></td>
+<td>Добавление предметов</td>
+</tr>
+<tr>
+<td><code>/gradebook</code></td>
+<td>Таблица оценок всех учеников по всем заданиям</td>
+</tr>
+</tbody>
+</table>
+<p>Интерфейс адаптируется к ширине экрана. Таблица журнала имеет горизонтальную прокрутку. Изменяющие действия выполняются POST-запросами. Доступ проверяется на сервере, а не только скрытием кнопок.</p>
+<h2 id="_6">Работа с интерфейсами</h2>
+<h3 id="_7">Регистрация и вход</h3>
+<p>На странице <code>/register</code> пользователь вводит имя, уникальный логин и пароль. Логин содержит 3–40 латинских букв, цифр или символов подчёркивания; пароль — не менее 8 символов. Пользователь выбирает роль ученика или учителя. Для учителя дополнительно обязателен специальный ключ, заданный константой <code>TeacherRegistrationKey</code> в <code>internal/auth/teacher_key.go</code>. Сервер отклоняет неверный или пустой ключ учителя и неизвестные роли. Ученику ключ не нужен. При ошибке форма сохраняет имя, логин и роль и показывает пояснение; пароль и ключ повторно не выводятся. После успешной регистрации пользователь переходит на страницу входа. Успешный вход открывает список заданий; выход доступен в верхней панели.</p>
+<h3 id="_8">Список заданий</h3>
+<p>На <code>/assignments</code> показаны карточки с предметом, преподавателем, описанием и сроком сдачи. Поиск работает по названию и тексту, фильтр — по предмету. На странице выводится до шести заданий. Переходы между страницами сохраняют выбранный фильтр и поисковый запрос. Кнопка «Сбросить» возвращает полный список. При отсутствии результатов выводится сообщение. Учителю доступна кнопка создания задания.</p>
+<h3 id="_9">Создание и редактирование</h3>
+<p>Учитель вводит название, предмет, даты выдачи и сдачи, текст и условия штрафов. Срок сдачи не может предшествовать выбранной дате выдачи. Минимальная дата в форме обновляется при изменении даты выдачи; сервер также проверяет обе даты. Сдача в день выдачи разрешена. Недопустимые значения возвращают форму с сообщением об ошибке. После сохранения открывается карточка задания. В форме редактирования можно удалить задание с подтверждением - вместе с ним удаляются ответы и оценки.</p>
+<h3 id="_10">Сдача работы</h3>
+<p>На странице задания ученик видит условие, преподавателя, даты и правила штрафов. Текст решения содержит от 1 до 10000 символов. До оценки ответ можно обновить. После оценки форма заменяется сохранённым ответом, оценкой и обратной связью (комментарием) учителя. При просрочке дедлайна показывается отметка; срок включает весь последний день по московскому времени. Обновление ответа меняет время сдачи на время последнего сохранения.</p>
+<h3 id="_11">Проверка учителем</h3>
+<p>Учитель видит ответы всех учеников на странице задания, время отправки и отметку просрочки. Для каждого ответа он выбирает оценку от 2 до 5 и может оставить обратную связь. Сохранённую оценку можно изменить. Штраф учитывается учителем вручную согласно условиям задания. Ученик видит только свой ответ.</p>
+<h3 id="_12">Журнал и предметы</h3>
+<p>Страница <code>/gradebook</code> доступна обеим ролям. Строки соответствуют всем ученикам, столбцы — заданиям. «—» означает отсутствие ответа, «На проверке» — ответ без оценки. Заголовок задания содержит ссылку на его карточку. Широкая таблица прокручивается горизонтально.</p>
+<p>На <code>/teacher/subjects</code> учитель добавляет предметы и просматривает справочник. Пустые названия, названия длиннее 100 символов и дубликаты отклоняются. Новый предмет становится доступен в форме задания и фильтре списка.</p>
+<h2 id="_13">Сценарии проверки</h2>
+<table>
+<thead>
+<tr>
+<th>Действие</th>
+<th>Ожидаемый результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Зарегистрировать ученика и войти</td>
+<td>Открывается список заданий, действия учителя скрыты</td>
+</tr>
+<tr>
+<td>Зарегистрировать учителя с верным ключом</td>
+<td>Аккаунту доступны действия учителя</td>
+</tr>
+<tr>
+<td>Указать пустой или неверный ключ для учителя</td>
+<td>Регистрация отклоняется</td>
+</tr>
+<tr>
+<td>Указать срок сдачи раньше даты выдачи</td>
+<td>Форма и сервер отклоняют значение</td>
+</tr>
+<tr>
+<td>Указать одинаковые даты выдачи и сдачи</td>
+<td>Даты принимаются</td>
+</tr>
+<tr>
+<td>Учителем создать задание</td>
+<td>Карточка содержит введённые поля</td>
+</tr>
+<tr>
+<td>Отправить и обновить ответ учеником</td>
+<td>Сохраняется последний текст и время отправки</td>
+</tr>
+<tr>
+<td>Выставить оценку и обратную связь</td>
+<td>Ученик видит их в карточке, оценка появляется в общем журнале</td>
+</tr>
+<tr>
+<td>Попытаться изменить оценённый ответ</td>
+<td>Изменение запрещено</td>
+</tr>
+<tr>
+<td>Учеником открыть страницу создания задания</td>
+<td>Сервер возвращает запрет доступа</td>
+</tr>
+<tr>
+<td>Найти задание и выбрать предмет</td>
+<td>Список соответствует обоим условиям</td>
+</tr>
+<tr>
+<td>Перейти на вторую страницу при наличии более шести результатов</td>
+<td>Фильтр и поисковая строка сохраняются</td>
+</tr>
+<tr>
+<td>Подтвердить удаление задания</td>
+<td>Задание, его ответы и оценки удаляются</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_14">Источник задания</h2>
 <p><a href="https://rendex85.github.io/ITMO_ICT_WebDevelopment_Docs/lab2/assignment/">Условия лабораторной работы № 2</a>.</p></div>
             </div>
         </div>
@@ -249,5 +341,5 @@
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-09-24 09:39:51.917495+00:00
+Build Date UTC : 2026-09-24 10:01:00.031350+00:00
 -->
