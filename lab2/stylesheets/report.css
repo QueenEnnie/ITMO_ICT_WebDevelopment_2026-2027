@@ -1,0 +1,14 @@
+body { line-height: 1.75; }
+.navbar { background: #285942 !important; }
+h1, h2, h3 { line-height: 1.3; }
+h1 { margin-bottom: 1.25rem; }
+h2 { margin-top: 2rem; }
+table { display: block; overflow-x: auto; }
+th, td { padding: .65rem .85rem !important; }
+pre { border-radius: .5rem; }
+@media print {
+  .navbar, .bs-sidebar, footer, .headerlink { display: none !important; }
+  body { padding-top: 0; }
+  .col-md-9 { width: 100%; }
+  a { text-decoration: none; }
+}
